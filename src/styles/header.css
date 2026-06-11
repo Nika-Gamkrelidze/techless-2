@@ -1,0 +1,137 @@
+/* Floating glass pill header — echoes the 3D site's top chrome. */
+
+.site-header {
+  position: sticky;
+  top: 14px;
+  z-index: 50;
+}
+
+.site-header__bar {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 9px 12px 9px 24px;
+  border-radius: var(--radius-pill);
+  background: var(--glass-light);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(30, 107, 255, 0.16);
+  box-shadow: 0 18px 50px -30px rgba(6, 11, 26, 0.5);
+}
+
+.site-header__brand {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: 0.01em;
+  color: var(--ink);
+  margin-right: auto;
+}
+
+.site-header__dot {
+  color: var(--blue);
+}
+
+.site-header__nav {
+  display: flex;
+  gap: 4px;
+}
+
+.site-header__link {
+  padding: 9px 16px;
+  border-radius: var(--radius-pill);
+  font-weight: 500;
+  font-size: 14.5px;
+  color: var(--ink-soft);
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.site-header__link:hover {
+  background: rgba(30, 107, 255, 0.09);
+  color: var(--ink);
+}
+
+.site-header__link.is-active {
+  background: var(--ink);
+  color: var(--white);
+}
+
+.site-header__cta {
+  padding: 11px 22px;
+  font-size: 14px;
+}
+
+/* burger — two lines that form an X when open */
+
+.site-header__burger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  width: 44px;
+  height: 44px;
+  padding: 10px;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: transparent;
+  cursor: pointer;
+}
+
+.site-header__burger span {
+  display: block;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--ink);
+  transition: transform 0.3s var(--ease-out);
+}
+
+.site-header__burger.is-open span:first-child {
+  transform: translateY(4px) rotate(45deg);
+}
+
+.site-header__burger.is-open span:last-child {
+  transform: translateY(-4px) rotate(-45deg);
+}
+
+.site-header__menu {
+  display: grid;
+  gap: 6px;
+  margin-top: 10px;
+  padding: 14px;
+  border-radius: 24px;
+  background: var(--glass-light);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(30, 107, 255, 0.16);
+  box-shadow: 0 18px 50px -30px rgba(6, 11, 26, 0.5);
+}
+
+.site-header__menu-link {
+  padding: 13px 18px;
+  border-radius: 16px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 17px;
+  color: var(--ink);
+}
+
+.site-header__menu-link:hover,
+.site-header__menu-link.is-active {
+  background: rgba(30, 107, 255, 0.09);
+  color: var(--blue);
+}
+
+.site-header__menu-cta {
+  margin-top: 6px;
+}
+
+@media (max-width: 840px) {
+  .site-header__nav,
+  .site-header__cta {
+    display: none;
+  }
+
+  .site-header__burger {
+    display: flex;
+  }
+}

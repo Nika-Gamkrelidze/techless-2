@@ -1,66 +1,123 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import Link from "next/link";
+import HomeHero from "@/components/HomeHero";
+import Reveal from "@/components/Reveal";
+import RoomCard from "@/components/RoomCard";
+import CtaBand from "@/components/CtaBand";
+import { SITE, STATS } from "@/data/site";
+import { SERVICES } from "@/data/services";
+import { pageMeta } from "@/lib/meta";
 
-export default function Home() {
+export const metadata = pageMeta({
+  description: SITE.description,
+  path: "/",
+});
+
+const orgJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: SITE.name,
+  url: SITE.url,
+  email: SITE.email,
+  description: SITE.description,
+  slogan: SITE.tagline,
+};
+
+const steps = [
+  {
+    title: "Tell us what you’re shipping",
+    body: "We map your domain, pick the stack and design the system — with a delivery plan built around real dates.",
+  },
+  {
+    title: "We build in weekly increments",
+    body: "Senior engineers ship reviewed, tested work every week — design system first, then features behind flags.",
+  },
+  {
+    title: "We launch it and run it",
+    body: "Deployment, monitoring, analytics and support — then we keep iterating while you watch the product grow.",
+  },
+];
+
+export default function HomePage() {
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.js file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }}
+      />
+
+      <HomeHero />
+
+      {/* Welcome / reception — copy from the 3D lobby intro */}
+      <section className="section">
+        <div className="container welcome__grid">
+          <Reveal>
+            <p className="eyebrow">Welcome to Techless</p>
+            <h2 className="display welcome__title">Your tech department.</h2>
+            <p className="welcome__tagline">All of the technology, none of the headcount.</p>
+            <p className="lead welcome__body">
+              We are an outsourced engineering studio. Choose us and you never hire a tech
+              employee again — our four departments become yours: they build, ship and support
+              your product end to end.
+            </p>
+            <ul className="ticks welcome__ticks">
+              <li>Web · Mobile · Hardware · Support</li>
+              <li>One partner, one invoice, zero hiring</li>
+              <li>Four departments under one roof</li>
+            </ul>
+          </Reveal>
+          <Reveal delay={0.12} className="welcome__statcard blueprint">
+            <span className="welcome__statvalue grad-text">{STATS[0].value}</span>
+            <span className="welcome__statlabel">{STATS[0].label}</span>
+          </Reveal>
         </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      {/* The directory — four department cards */}
+      <section className="section section--flush-top" id="directory">
+        <div className="container">
+          <Reveal className="section-head">
+            <p className="eyebrow">The directory</p>
+            <h2 className="display">Four departments. One invoice.</h2>
+            <p className="lead">
+              Every room is a complete team you can walk into today — pick one, or take the
+              whole floor.
+            </p>
+          </Reveal>
+          <div className="directory__grid">
+            {SERVICES.map((s, i) => (
+              <Reveal key={s.slug} delay={(i % 2) * 0.1}>
+                <RoomCard service={s} />
+              </Reveal>
+            ))}
+          </div>
         </div>
-      </main>
-    </div>
+      </section>
+
+      {/* How an engagement runs */}
+      <section className="section section--flush-top">
+        <div className="container">
+          <Reveal className="section-head">
+            <p className="eyebrow">How it works</p>
+            <h2 className="display">From first call to running product.</h2>
+          </Reveal>
+          <div className="steps__grid">
+            {steps.map((step, i) => (
+              <Reveal key={step.title} delay={i * 0.1} className="step">
+                <span className="step__num">{i + 1}</span>
+                <h3 className="display step__title">{step.title}</h3>
+                <p className="step__body">{step.body}</p>
+              </Reveal>
+            ))}
+          </div>
+          <Reveal className="steps__cta">
+            <Link href="/services/" className="btn btn--ghost">
+              Explore all services
+            </Link>
+          </Reveal>
+        </div>
+      </section>
+
+      <CtaBand />
+    </>
   );
 }
