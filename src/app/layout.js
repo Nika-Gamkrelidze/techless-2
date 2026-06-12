@@ -4,10 +4,12 @@ import "@/styles/footer.css";
 import "@/styles/home.css";
 import "@/styles/service.css";
 import "@/styles/contact.css";
+import "@/styles/fx.css";
 
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import MotionProvider from "@/components/MotionProvider";
+import CustomCursor from "@/components/fx/CustomCursor";
 import { SITE } from "@/data/site";
 
 // Same Fontshare pairing as the 3D site, so both keep one brand voice.
@@ -43,6 +45,7 @@ export default function RootLayout({ children }) {
           <Header />
           <main>{children}</main>
           <Footer />
+          <CustomCursor />
         </MotionProvider>
       </body>
     </html>

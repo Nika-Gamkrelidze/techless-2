@@ -3,9 +3,19 @@ import HomeHero from "@/components/HomeHero";
 import Reveal from "@/components/Reveal";
 import RoomCard from "@/components/RoomCard";
 import CtaBand from "@/components/CtaBand";
+import ElevatorSpine from "@/components/ElevatorSpine";
+import Counter from "@/components/fx/Counter";
 import { SITE, STATS } from "@/data/site";
 import { SERVICES } from "@/data/services";
 import { pageMeta } from "@/lib/meta";
+
+const SPINE_STOPS = [
+  { id: "reception", label: "G — Reception" },
+  { id: "lobby", label: "Lobby" },
+  { id: "directory", label: "The directory" },
+  { id: "process", label: "How it works" },
+  { id: "end", label: "End of the hall" },
+];
 
 export const metadata = pageMeta({
   description: SITE.description,
@@ -46,9 +56,10 @@ export default function HomePage() {
       />
 
       <HomeHero />
+      <ElevatorSpine stops={SPINE_STOPS} />
 
       {/* Welcome / reception — copy from the 3D lobby intro */}
-      <section className="section">
+      <section className="section" id="lobby">
         <div className="container welcome__grid">
           <Reveal>
             <p className="eyebrow">Welcome to Techless</p>
@@ -66,7 +77,7 @@ export default function HomePage() {
             </ul>
           </Reveal>
           <Reveal delay={0.12} className="welcome__statcard blueprint">
-            <span className="welcome__statvalue grad-text">{STATS[0].value}</span>
+            <Counter value={STATS[0].value} className="welcome__statvalue grad-text" />
             <span className="welcome__statlabel">{STATS[0].label}</span>
           </Reveal>
         </div>
@@ -94,7 +105,7 @@ export default function HomePage() {
       </section>
 
       {/* How an engagement runs */}
-      <section className="section section--flush-top">
+      <section className="section section--flush-top" id="process">
         <div className="container">
           <Reveal className="section-head">
             <p className="eyebrow">How it works</p>
@@ -117,7 +128,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <CtaBand />
+      <CtaBand id="end" />
     </>
   );
 }

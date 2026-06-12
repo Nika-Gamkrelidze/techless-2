@@ -1,0 +1,306 @@
+/* ---------------------------------------------------------------------------
+   FX layer: custom cursor, dot field, elevator spine, marquee, tilt glow,
+   grain + aurora atmosphere. Everything here is decorative — content and
+   navigation work identically without it.
+--------------------------------------------------------------------------- */
+
+/* ---- custom cursor ---- */
+
+html.has-cursor,
+html.has-cursor * {
+  cursor: none !important;
+}
+
+.cursor-dot {
+  position: fixed;
+  top: -3px;
+  left: -3px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--blue-bright);
+  z-index: 9999;
+  pointer-events: none;
+}
+
+.cursor-ring {
+  position: fixed;
+  top: -16px;
+  left: -16px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(69, 200, 255, 0.65);
+  z-index: 9998;
+  pointer-events: none;
+  transition: transform 0.3s var(--ease-out), background 0.3s ease, border-color 0.3s ease;
+}
+
+.cursor-ring.is-hot {
+  transform: scale(1.7);
+  background: rgba(69, 200, 255, 0.1);
+  border-color: rgba(69, 200, 255, 0.9);
+}
+
+/* ---- hero dot field canvas ---- */
+
+.dotfield {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* keep hero content above canvas/aurora */
+.hero > .container {
+  position: relative;
+  z-index: 1;
+}
+
+/* ---- aurora drift on the hero ---- */
+
+.hero::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  width: 55vw;
+  height: 55vw;
+  left: -12%;
+  top: -28%;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(30, 107, 255, 0.26), transparent 72%);
+  filter: blur(46px);
+  animation: aurora-drift 26s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+@keyframes aurora-drift {
+  to {
+    transform: translate(34vw, 12vh) scale(1.18);
+  }
+}
+
+/* ---- film grain on dark surfaces ---- */
+
+.blueprint::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0.32;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.42'/%3E%3C/svg%3E");
+  background-size: 160px 160px;
+}
+
+/* ---- masked headline reveal ---- */
+
+.h-mask {
+  display: block;
+  overflow: hidden;
+  /* keep descenders from clipping at rest */
+  padding-bottom: 0.09em;
+  margin-bottom: -0.09em;
+}
+
+.h-line {
+  display: inline-block;
+  will-change: transform;
+}
+
+/* ---- elevator spine ---- */
+
+.spine {
+  position: fixed;
+  right: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 40;
+  padding: 22px 14px;
+  border-radius: var(--radius-pill);
+  background: rgba(246, 249, 255, 0.62);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(30, 107, 255, 0.16);
+  box-shadow: 0 18px 50px -30px rgba(6, 11, 26, 0.5);
+}
+
+.spine__rail {
+  position: relative;
+  width: 18px;
+  height: 300px; /* must match TRACK in ElevatorSpine.jsx */
+}
+
+.spine__rail::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  margin-left: -1px;
+  border-radius: 2px;
+  background: rgba(10, 16, 36, 0.14);
+}
+
+.spine__car {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 12px;
+  height: 12px;
+  margin-left: -6px;
+  margin-top: -6px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--blue), var(--cyan));
+  box-shadow: 0 0 16px rgba(69, 200, 255, 0.85);
+}
+
+.spine__stop {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.spine__dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(10, 16, 36, 0.3);
+  transition: background 0.25s ease, transform 0.25s var(--ease-out);
+}
+
+.spine__stop:hover .spine__dot,
+.spine__stop.is-active .spine__dot {
+  background: var(--blue);
+  transform: scale(1.5);
+}
+
+.spine__label {
+  position: absolute;
+  right: calc(100% + 16px);
+  top: 50%;
+  transform: translateY(-50%) translateX(6px);
+  white-space: nowrap;
+  padding: 7px 14px;
+  border-radius: var(--radius-pill);
+  background: rgba(246, 249, 255, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(30, 107, 255, 0.16);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s var(--ease-out);
+}
+
+.spine__stop:hover .spine__label,
+.spine__stop.is-active .spine__label {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0);
+}
+
+@media (max-width: 1180px) {
+  .spine {
+    display: none;
+  }
+}
+
+/* ---- stack marquee (hero bottom) ---- */
+
+.marquee {
+  position: relative;
+  z-index: 1;
+  margin-top: clamp(36px, 5vh, 56px);
+  padding-top: 24px;
+  border-top: 1px solid rgba(246, 249, 255, 0.08);
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+}
+
+.marquee__inner {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 48s linear infinite;
+}
+
+.marquee:hover .marquee__inner {
+  animation-play-state: paused;
+}
+
+.marquee__item {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(246, 249, 255, 0.38);
+}
+
+.marquee__dot {
+  margin: 0 26px;
+  color: rgba(69, 200, 255, 0.5);
+}
+
+@keyframes marquee-scroll {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* ---- room card tilt + pointer glow ---- */
+
+.room-card__tilt {
+  display: grid;
+  height: 100%;
+  will-change: transform;
+}
+
+.room-card__glow {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  z-index: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+  background: radial-gradient(
+    260px circle at var(--mx, 50%) var(--my, 50%),
+    color-mix(in srgb, var(--hue) 13%, transparent),
+    transparent 70%
+  );
+}
+
+.room-card:hover .room-card__glow {
+  opacity: 1;
+}
+
+/* ---- reduced motion: kill all decorative animation ---- */
+
+@media (prefers-reduced-motion: reduce) {
+  .hero::before {
+    animation: none;
+  }
+
+  .marquee__inner {
+    animation: none;
+  }
+}

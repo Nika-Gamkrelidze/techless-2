@@ -1,12 +1,13 @@
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
+import Magnetic from "@/components/fx/Magnetic";
 import { SITE } from "@/data/site";
 
 // Closing call-to-action panel, shared by most pages. Copy ported from the
 // 3D site's outro ("End of the hall").
-export default function CtaBand() {
+export default function CtaBand({ id }) {
   return (
-    <section className="section">
+    <section className="section" id={id}>
       <div className="container">
         <Reveal className="cta-band blueprint">
           <p className="eyebrow">End of the hall</p>
@@ -18,12 +19,16 @@ export default function CtaBand() {
             handle the rest.
           </p>
           <div className="cta-band__actions">
-            <a className="btn btn--primary" href={`mailto:${SITE.email}`}>
-              Start a project
-            </a>
-            <Link className="btn btn--ghost" href="/contact/">
-              Contact details
-            </Link>
+            <Magnetic>
+              <a className="btn btn--primary" href={`mailto:${SITE.email}`}>
+                Start a project
+              </a>
+            </Magnetic>
+            <Magnetic>
+              <Link className="btn btn--ghost" href="/contact/">
+                Contact details
+              </Link>
+            </Magnetic>
           </div>
           <p className="cta-band__email">
             <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
