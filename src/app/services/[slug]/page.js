@@ -61,9 +61,13 @@ export default async function ServicePage({ params }) {
             </p>
             <p className="eyebrow svc-hero__eyebrow">{s.eyebrow}</p>
             <h1 className="display svc-hero__title">
-              {s.titleLines[0]}
-              <br />
-              {s.titleLines[1]}
+              {/* one-word titles (Cybersecurity) render as a single line */}
+              {s.titleLines.map((line, i) => (
+                <span key={line}>
+                  {i > 0 && <br />}
+                  {line}
+                </span>
+              ))}
             </h1>
             <p className="svc-hero__tagline">{s.tagline}</p>
             <div className="svc-hero__meta">
@@ -72,7 +76,7 @@ export default async function ServicePage({ params }) {
                 <span className="svc-hero__stat-label">{s.stat.label}</span>
               </span>
               <a className="btn btn--primary" href={`mailto:${SITE.email}`}>
-                Start a project
+                Book a free assessment
               </a>
             </div>
           </Reveal>

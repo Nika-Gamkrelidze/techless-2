@@ -12,8 +12,8 @@ export default function Footer() {
               Techless<span className="site-footer__dot">.</span>
             </p>
             <p className="site-footer__blurb">
-              {SITE.tagline} Web, mobile, hardware and contact-center teams that build, ship and
-              support your product end to end.
+              {SITE.tagline} Network, systems, cloud and security teams that run your IT end to
+              end — one partner, one SLA.
             </p>
             <a className="site-footer__email" href={`mailto:${SITE.email}`}>
               {SITE.email}
@@ -42,7 +42,7 @@ export default function Footer() {
                 </li>
               ))}
               <li>
-                <Link href="/contact/">Start a project</Link>
+                <Link href="/contact/">Book a free assessment</Link>
               </li>
             </ul>
           </nav>

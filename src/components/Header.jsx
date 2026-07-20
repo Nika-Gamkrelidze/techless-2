@@ -39,7 +39,7 @@ export default function Header() {
           </nav>
 
           <Link href="/contact/" className="btn btn--primary site-header__cta">
-            Start a project
+            Book a free assessment
           </Link>
 
           <button
@@ -67,7 +67,7 @@ export default function Header() {
               </Link>
             ))}
             <Link href="/contact/" className="btn btn--primary site-header__menu-cta">
-              Start a project
+              Book a free assessment
             </Link>
           </nav>
         )}

@@ -34,16 +34,16 @@ const orgJsonLd = {
 
 const steps = [
   {
-    title: "Tell us what you’re shipping",
-    body: "We map your domain, pick the stack and design the system — with a delivery plan built around real dates.",
+    title: "Tell us what you run",
+    body: "We audit the estate — every server, link, account and cloud bill — and hand you a map of what's solid, what's fragile and what it costs.",
   },
   {
-    title: "We build in weekly increments",
-    body: "Senior engineers ship reviewed, tested work every week — design system first, then features behind flags.",
+    title: "We stabilize and standardize",
+    body: "Monitoring and tested backups go under everything first, then automation replaces tribal knowledge — playbooks, golden images, guardrails.",
   },
   {
-    title: "We launch it and run it",
-    body: "Deployment, monitoring, analytics and support — then we keep iterating while you watch the product grow.",
+    title: "We run it around the clock",
+    body: "NOC and SOC watching 24/7, a service desk on real SLAs, quarterly reviews — you feel none of it, which is the whole point.",
   },
 ];
 
@@ -63,16 +63,16 @@ export default function HomePage() {
         <div className="container welcome__grid">
           <Reveal>
             <p className="eyebrow">Welcome to Techless</p>
-            <h2 className="display welcome__title">Your tech department.</h2>
-            <p className="welcome__tagline">All of the technology, none of the headcount.</p>
+            <h2 className="display welcome__title">Your IT department.</h2>
+            <p className="welcome__tagline">All of the infrastructure, none of the headcount.</p>
             <p className="lead welcome__body">
-              We are an outsourced engineering studio. Choose us and you never hire a tech
-              employee again — our four departments become yours: they build, ship and support
-              your product end to end.
+              We are a managed IT and infrastructure partner. Choose us and you never build an
+              ops team again — our four departments become yours: they connect, operate, scale
+              and protect your business end to end.
             </p>
             <ul className="ticks welcome__ticks">
-              <li>Web · Mobile · Hardware · Support</li>
-              <li>One partner, one invoice, zero hiring</li>
+              <li>Network · Systems · Cloud · Security</li>
+              <li>One partner, one SLA, zero firefighting</li>
               <li>Four departments under one roof</li>
             </ul>
           </Reveal>
@@ -88,7 +88,7 @@ export default function HomePage() {
         <div className="container">
           <Reveal className="section-head">
             <p className="eyebrow">The directory</p>
-            <h2 className="display">Four departments. One invoice.</h2>
+            <h2 className="display">Four departments. One SLA.</h2>
             <p className="lead">
               Every room is a complete team you can walk into today — pick one, or take the
               whole floor.
@@ -109,7 +109,7 @@ export default function HomePage() {
         <div className="container">
           <Reveal className="section-head">
             <p className="eyebrow">How it works</p>
-            <h2 className="display">From first call to running product.</h2>
+            <h2 className="display">From first audit to always on.</h2>
           </Reveal>
           <div className="steps__grid">
             {steps.map((step, i) => (

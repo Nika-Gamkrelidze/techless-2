@@ -7,7 +7,7 @@ import { pageMeta } from "@/lib/meta";
 export const metadata = pageMeta({
   title: "Services",
   description:
-    "Four departments, one invoice: web development, mobile apps, hardware design and contact-center support — complete teams that build, ship and run your product.",
+    "Four departments, one SLA: network infrastructure, system administration, cloud & DevOps, and cybersecurity — complete teams that connect, operate, scale and protect your business.",
   path: "/services/",
 });
 
@@ -19,11 +19,11 @@ export default function ServicesPage() {
           <Reveal className="section-head">
             <p className="eyebrow">The directory</p>
             <h1 className="display section-head__title">
-              Four departments. <em className="grad-text">One invoice.</em>
+              Four departments. <em className="grad-text">One SLA.</em>
             </h1>
             <p className="lead">
               Each floor of Techless is a complete team. Walk into the room you need — they
-              build, ship and support your product end to end.
+              connect, operate, scale and protect your business end to end.
             </p>
           </Reveal>
 

@@ -2,12 +2,12 @@
 // SITE.url: replace with the final production domain before going live.
 export const SITE = {
   name: "Techless",
-  url: "https://techless.studio",
-  email: "hello@techless.studio",
-  descriptor: "Outsourced Engineering Studio",
+  url: "https://techless.io",
+  email: "hello@techless.io",
+  descriptor: "IT Infrastructure & Managed Services",
   tagline: "We handle the tech. You feel none of it.",
   description:
-    "Techless is an outsourced engineering studio. Web, mobile, hardware and contact-center teams that build, ship and support your product end to end — one partner, one invoice, zero hiring.",
+    "Techless is a managed IT & infrastructure services company. Network infrastructure, system administration, cloud & DevOps, and cybersecurity — run for you, around the clock. One partner, one SLA.",
 };
 
 export const NAV = [
@@ -17,8 +17,8 @@ export const NAV = [
 ];
 
 export const STATS = [
-  { value: "98%", label: "client retention" },
-  { value: "300+", label: "web products shipped" },
-  { value: "4.8★", label: "average store rating" },
-  { value: "<30s", label: "average response time" },
+  { value: "140+", label: "estates under management" },
+  { value: "99.99%", label: "network uptime" },
+  { value: "<15 min", label: "critical incident response" },
+  { value: "<10 min", label: "security time to respond" },
 ];

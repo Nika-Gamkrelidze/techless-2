@@ -26,26 +26,27 @@ const line = {
 };
 
 const STACK_MARQUEE = [
-  "TypeScript",
-  "React",
-  "Next.js",
-  "Node",
-  "PostgreSQL",
+  "Cisco",
+  "Juniper",
+  "Fortinet",
+  "Ubiquiti",
+  "Windows Server",
+  "RHEL",
+  "VMware",
+  "Proxmox",
+  "Ansible",
+  "Veeam",
   "AWS",
-  "Swift",
-  "Kotlin",
-  "React Native",
-  "Flutter",
-  "Firebase",
-  "KiCad",
-  "Altium",
-  "C/C++",
-  "Rust",
-  "ESP32",
-  "Twilio",
-  "Genesys",
-  "HubSpot",
-  "Salesforce",
+  "Azure",
+  "GCP",
+  "Kubernetes",
+  "Terraform",
+  "ArgoCD",
+  "Prometheus",
+  "Grafana",
+  "CrowdStrike",
+  "Splunk",
+  "Okta",
 ];
 
 export default function HomeHero() {
@@ -75,13 +76,13 @@ export default function HomeHero() {
             </span>
           </h1>
           <motion.p variants={item} className="lead hero__lead">
-            Choose us and you never hire a tech employee again — our four departments become
-            yours: they build, ship and support your product end to end.
+            Choose us and you never build an ops team again — our four departments become
+            yours: they connect, operate, scale and protect your business end to end.
           </motion.p>
           <motion.div variants={item} className="hero__ctas">
             <Magnetic>
               <Link href="/contact/" className="btn btn--primary">
-                Start a project
+                Book a free assessment
               </Link>
             </Magnetic>
             <Magnetic>
